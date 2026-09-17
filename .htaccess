@@ -1,0 +1,17 @@
+Options -Indexes
+<FilesMatch "\.(pdf)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+RewriteEngine On
+RewriteBase /smk_colomadu/
+
+# Proteksi folder uploads
+RewriteRule ^uploads/.*$ - [F,NC]
+
+# Redirect root ke admin login
+RewriteRule ^$ admin/login.php [L]
+
+# Cegah akses langsung ke file PHP di includes
+RewriteRule ^includes/.*\.php$ - [F,NC]
